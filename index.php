@@ -1,3 +1,7 @@
+<?php 
+require_once __DIR__.'/database/db.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,27 +14,70 @@
   <title> PHP OOP 2 </title>
 </head>
 <body>
-  <?php 
-    require_once __DIR__.'/classes/Product.php';
-    require_once __DIR__.'/database/db-product.php';
-  ?>
-  <div class="container py-5">
-    <div class="row row-gap-3">
+  <h1>lista prodotti</h1>
+<div class="container py-5">
+    <div class="row row-gap-2">
       <?php 
         foreach ($products as $product) {
       ?>
-      <div class="col-4 col-lg-3 ">
+      <div class="col-6 col-lg-4 ">
         <div class="card" >
-          <img src=" <?= $product-> image ?> " class="card-img-top" alt="<?= $product-> title ?>">
-          <div class="card-body">
-            <h5 class="card-title"><?= $product-> title ?></h5>
-            <h5 class="card-title text-primary"><?= $product-> category->name  == 'dog'? 'cane': 'gatto' ?></h5>
-            <p class="card-text"><?= $product-> description ?></p>
+          <img src=" <?= $product->image ?> " class="card-img-top" alt="<?= $product-> name ?>">
+          <div class="card-body border-top-primary">
+            <h5 class="card-title"><?= $product-> name ?></h5>
+            <h5 class="card-title text-primary text-uppercase">
+              <?= $product->category->icon ?>
+              <?= $product->category->name ?>
+            </h5>
+  
             <p class="card-text">
               <strong>
-                <?= $product-> formatPriceValue() ?> €
+                <?php 
+                  try {
+                    echo $product-> formatPriceValue(). '€' ;
+                  } catch (Exception $e) {
+                    var_dump( $e->getMessage());
+                  }
+                ?>
+                 
               </strong>
             </p>
+
+            <ul>
+              <?php 
+                if(get_class($product) == 'Food'){
+               
+              ?>
+                <li>
+                  scadenza: <?= $product->expiration?>
+                </li>
+              <?php 
+               }
+              ?>
+              <?php 
+                if(get_class($product) == 'Game'){
+               
+                ?>
+                <li>
+                materiale: <?= $product->material?>
+                </li>
+              <?php 
+               }
+              ?>
+              <?php 
+                if(get_class($product) == 'Kennel'){
+               
+                ?>
+                <li>
+                 imbottitura: <?= $product->padding?>
+                </li>
+              <?php 
+               }
+              ?>
+              
+             
+              
+            </ul>
           </div>
         </div>
       </div>
@@ -41,7 +88,5 @@
     </div>
 
   </div>
-
-
 </body>
 </html>

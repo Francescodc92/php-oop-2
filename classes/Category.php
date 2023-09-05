@@ -1,11 +1,17 @@
 <?php 
+require_once __DIR__.'/../traits/HasName.php';
 class Category
 {
-  public $name;
+  use HasName;
+  public $icon;
 
-  public function __construct($name)
+  public function __construct(
+    string $name,
+    string $icon,
+  )
   {
-    $this->name = $name;
+    $this->name =  $name;
+    $this->icon =  $icon;
   }
 }
 

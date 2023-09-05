@@ -1,47 +1,38 @@
 <?php 
+require_once __DIR__.'/../traits/HasName.php';
 
 class Product
+{
+  use HasName;
+  public $image;
+  public $price;
+  public $category;
+
+  public function __construct(
+    string  $name,
+    string  $image,
+    int     $price,
+    Category $category,
+  )
   {
-    public $id;
-    public $title;
-    public $image;
-    public $price;
-    public $category;
-    public $description;
-    public $tipe;
-
-    public function __construct(
-      int     $id,
-      string  $title,
-      string  $image,
-      int     $price,
-      Category $category,
-      string  $description,
-      string  $tipe,
-  
-    )
-    {
-      $this->createId($id);
-      $this-> title = $title;
-      $this-> image = $image;
-      $this-> price = $price;
-      $this-> category = $category;
-      $this-> description = $description;
-      $this-> tipe = $tipe;
+    $this->name =  $name;
+    $this->image =  $image;
+    if(is_numeric($price) && $price > 0){
+      $this->price =  $price;
+    }else{
+      throw new InvalidArgumentException('prezzo non valido!');
     }
+    $this->category =  $category;
+  }
 
-    //setters
-    public function createId($id)
-    {
-      $this->id = $id;
-    }
-    //getters
-    //methods
-    public function formatPriceValue()
-    {
+  public function formatPriceValue()
+  {
+    if(is_int($this->price) && $this->price != 0){
       return $this->price / 100;
+    }else{
+      throw new Exception("valore $this->price non valido");
     }
-
+  }
 }
 
 ?>

@@ -33,7 +33,7 @@ $customer->cart = $cart;
 try {
 $customer->cart->checkout($customer);
 } catch (Exception $e) {
-$e->getMessage();
+  echo $e->getMessage();
 }
 
 
@@ -70,7 +70,7 @@ $customer2->cart = $cart2;
 try {
 $customer2->cart->checkout($customer2);
 } catch (Exception $e) {
-$e->getMessage();
+  echo $e->getMessage();
 }
 
 echo '<br>';
@@ -106,7 +106,7 @@ $customer3->cart = $cart3;
 try {
 $customer3->cart->checkout($customer3);
 } catch (Exception $e) {
-$e->getMessage();
+echo $e->getMessage();
 }
 
 

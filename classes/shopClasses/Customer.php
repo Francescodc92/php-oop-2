@@ -27,9 +27,11 @@ class Customer
     $this->password = $password;
     $this->creditCard =  $creditCard;
   }
-  //methods
-  public function logIn($name, $email, $password){
-    if($name != null && $email != null && $password != null){
+  //methods 
+  public function logIn(){
+    if($this->name != null && $this->email != null && $this->password != null){
+      $this->isRegistered = true;
+    }else{
       $this->isRegistered = true;
     }
   }

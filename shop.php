@@ -73,6 +73,41 @@ $customer2->cart->checkout($customer2);
 $e->getMessage();
 }
 
+echo '<br>';
+// istanza 3
+
+$customer3 = new Customer(
+  'fra',
+  'dc@dc.com', 
+  '123', 
+  new CreditCard(12354866854,'2023-10-06', 124)
+);
+
+$customer3->logIn();
+
+$productsInCart3 = [
+new Product(
+'ciotola per acqua',
+'https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/2bcac344a6ea873f16f4792b8d552ca4.jpg?imageView2/2/w/800/q/70',
+5099,
+$dogCategory),
+new Product(
+'ciotola per acqua',
+'https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/2bcac344a6ea873f16f4792b8d552ca4.jpg?imageView2/2/w/800/q/70',
+499,
+$dogCategory),
+
+];
+
+$cart3 = new Cart($productsInCart3);
+
+$customer3->cart = $cart3;
+
+try {
+$customer3->cart->checkout($customer3);
+} catch (Exception $e) {
+$e->getMessage();
+}
 
 
 ?>

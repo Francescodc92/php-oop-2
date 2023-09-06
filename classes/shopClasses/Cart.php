@@ -22,7 +22,12 @@ class Cart
       foreach ($this->products as $product) {
         $this->total+= $product->formatPriceValue();
       }
-      $customer->creditCard->payProduct($this->total);
+
+      if($customer->isRegistered){
+        $this->total*=0.8;
+      }
+
+      $customer->creditCard->payProduct(number_format($this->total, 2, ',', '.'));
     }else{
       throw new Exception("Carta non valida");
     }

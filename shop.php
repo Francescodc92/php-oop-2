@@ -30,14 +30,6 @@ $cart = new Cart($productsInCart);
 
 $customer->cart = $cart;
 
-try {
-$customer->cart->checkout($customer);
-} catch (Exception $e) {
-  echo $e->getMessage();
-}
-
-
-echo '<br>';
 
 // istanza 2
 
@@ -67,13 +59,6 @@ $cart2 = new Cart($productsInCart2);
 
 $customer2->cart = $cart2;
 
-try {
-$customer2->cart->checkout($customer2);
-} catch (Exception $e) {
-  echo $e->getMessage();
-}
-
-echo '<br>';
 // istanza 3
 
 $customer3 = new Customer(
@@ -103,11 +88,126 @@ $cart3 = new Cart($productsInCart3);
 
 $customer3->cart = $cart3;
 
-try {
-$customer3->cart->checkout($customer3);
-} catch (Exception $e) {
-echo $e->getMessage();
-}
-
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>shop</title>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>nome</th>
+        <th>email</th>
+        <th>registrato</th>
+        <th>sconto</th>
+        <th>esito transazione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td>
+          <?php 
+           echo $customer->name != null ?  $customer->name: 'non fornito' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer->email != null ?  $customer->email: 'non fornita' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer->isRegistered != false ? 'registrato' :'non registrato' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer->isRegistered != false ? '20%' :'nessuno sconto' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+            try {
+             $customer->cart->checkout($customer);
+            }
+            catch (Exception $e) {
+              echo $e->getMessage();
+            }
+          ?>
+        </td>
+      </tr>
+      <tr >
+        <td>
+          <?php 
+           echo $customer2->name != null ?  $customer2->name: 'non fornito' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer2->email != null ?  $customer2->email: 'non fornita' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer2->isRegistered != false ? 'registrato' :'non registrato' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer2->isRegistered != false ? '20%' :'nessuno sconto' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+            try {
+             $customer2->cart->checkout($customer2);
+            }
+            catch (Exception $e) {
+              echo $e->getMessage();
+            }
+          ?>
+        </td>
+      </tr>
+      <tr >
+        <td>
+          <?php 
+           echo $customer3->name != null ?  $customer3->name: 'non fornito' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer3->email != null ?  $customer3->email: 'non fornita' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer3->isRegistered != false ? 'registrato' :'non registrato' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+           echo $customer3->isRegistered != false ? '20%' :'nessuno sconto' ;
+          ?>
+        </td>
+        <td>
+          <?php 
+            try {
+             $customer3->cart->checkout($customer3);
+            }
+            catch (Exception $e) {
+              echo $e->getMessage();
+            }
+          ?>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

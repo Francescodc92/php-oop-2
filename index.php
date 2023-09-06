@@ -1,5 +1,6 @@
 <?php 
 require_once __DIR__.'/database/db.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ require_once __DIR__.'/database/db.php';
 </head>
 <body>
   <h1>lista prodotti</h1>
-<div class="container py-5">
+  <div class="container py-5">
     <div class="row row-gap-2">
       <?php 
         foreach ($products as $product) {
